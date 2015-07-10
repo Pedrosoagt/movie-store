@@ -1,0 +1,3 @@
+== README
+
+Essa é minha versão do primeiro aplicativo em Rails que estamos fazendo na Caiena.

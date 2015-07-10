@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="small-12 large-12 column">
+    <h1><%= @actor.name %></h1>
+    <p><%= @actor.age %></p>    
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 large-12 column">
+    <ul>
+      <li><b>Filme:</b> <%= link_to @actor.movie.name, movie_path(@actor.movie.id), method: :get %></li>
+    </ul>
+    <p><%= link_to 'Back', actors_path %></p>
+  </div>
+</div>
+
+

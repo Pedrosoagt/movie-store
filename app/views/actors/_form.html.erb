@@ -1,0 +1,85 @@
+<% if @actor.errors.any? %>
+<div class="row">
+  <div class="small-12 large-12 column">
+  <p><%= pluralize(@actor.errors.count, 'error') %> prohibited this actor from being saved:</p>
+  <% @actor.errors.full_messages.each do |message| %>
+    <div data-alert class="alert-box alert radius">
+      <%= message %>
+      <a href="#" class="close">&times;</a>
+    </div>
+  <% end %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<%= form_for(@actor) do |f| %>
+<div class="row"> 
+  <div class="small-6 large-6 columns">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="small-6 large-6 columns">
+    <%= f.label :age %>
+    <%= f.text_field :age %>
+  </div>
+</div>
+<div class="movie-new row">
+  <div class="small-6 large-6 columns">
+    <%= f.label :movie_id %>
+    <%= f.select :movie_id, @movies.map { |m| [m.name, m.id] }, include_blank: true %>
+  </div>
+  <a href="#" class="toggle-form">New movie</a>
+</div>
+
+<div class="movie-new hide">
+  <%= f.fields_for :movie do |m| %>
+    <div class="row">
+      <div class="small-6 large-6 columns">
+        <h3>Create Movie</h3>
+        <a href class="toggle-form">Existing movie</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-6 large-6 columns">
+        <%= m.label :name %>
+        <%= m.text_field :name %>
+      </div>
+      <div class="small-6 large-6 columns">
+        <%= m.label :description %>
+        <%= m.text_field :description %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-6 large-6 columns">
+        <%= m.label :year %>
+        <%= m.text_field :year %>
+      </div>
+      <div class="small-6 large-6 columns">
+        <%= m.label :price %>
+        <%= m.text_field :price %>
+      </div> 
+    </div>
+    <div class="row">
+      <div class="small-6 large-6 columns">
+        
+      </div>
+    </div>
+
+  
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="small-12 large-12 columns">
+    <%= f.submit class: "button" %>
+  </div>
+</div>
+<% end %>
+
+
+<script type="text/javascript">
+  $('.toggle-form').click(function() {
+    $('.movie-new').toggleClass('hide');  
+  });
+</script>

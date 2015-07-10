@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="small-12 large-12 column">
+    <h1>List of Actors</h1>  
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 large-12 column">
+    <p>
+      <%= link_to 'Add', :new_actor %> |
+      <%= link_to 'Movies', movies_path %>
+    </p>
+  </div>
+</div>
+
+<%= form_tag actors_path, :method => 'get' do %>
+<div class="row">
+ <div class="small-6 large-6 columns">
+   <%= text_field_tag :search, params[:search] %>
+ </div>
+ <div class="small-6 large-6 columns">
+   <%= submit_tag "Search", :name => nil, class: 'button tiny' %>
+ </div>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="small-12 large-12 column">
+  <% if params[:search] %>
+    <p><%= link_to 'All', actors_path %></p>
+  <% end %>
+
+  <% flash.each do |name, msg| %>
+    <div data-alert class="alert-box success radius"><%= msg %>
+      <a href="#" class="close">&times;</a>
+    </div>
+  <% end %>
+    <table>
+      <thead>
+        <tr>
+          <th width="10%">#</th>
+          <th width="50%">Name</th>
+          <th width="15%">Age</th>
+          <th width="25%">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @actors.each do |m| %>
+          <tr>
+            <td><%= m.id %></td>
+            <td><%= m.name %></td>
+            <td><%= m.age %></td>
+            <td>
+              <%= link_to 'Show', actor_path(m.id) %> |
+              <%= link_to 'Edit', edit_actor_path(m.id) %> |
+              <%= link_to 'Delete', actor_path(m.id), method: :delete %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

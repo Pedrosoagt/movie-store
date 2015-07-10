@@ -1,0 +1,47 @@
+<% if @movie.errors.any? %>
+<div class="row">
+  <div class="small-12 large-12 column">
+  <p><%= pluralize(@movie.errors.count, 'error') %> prohibited this movie from being saved:</p>
+  <% @movie.errors.full_messages.each do |message| %>
+    <div data-alert class="alert-box alert radius">
+      <%= message %>
+      <a href="#" class="close">&times;</a>
+    </div>
+  <% end %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<%= form_for(@movie) do |f| %>
+<div class="row"> 
+  <div class="small-6 large-6 columns">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="small-6 large-6 columns">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+</div>
+<div class="row">
+  <div class="small-6 large-6 columns">
+    <%= f.label :year %>
+    <%= f.text_field :year %>
+  </div>
+  <div class="small-6 large-6 columns">
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>  
+</div>
+<!-- <div class="row">
+  <div class="small-6 large-6 columns">
+   #f.select :actor_id, options_from_collection_for_select(@actors, "id", "name"), include_blank: true %>
+  </div>
+</div> -->
+<div class="row">
+  <div class="small-12 large-12 columns">
+    <%= f.submit(class: "button") %>
+  </div>
+</div>
+<% end %>
